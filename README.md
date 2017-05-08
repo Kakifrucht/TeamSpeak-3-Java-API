@@ -20,36 +20,39 @@ A Java 7 wrapper of the [TeamSpeak 3](http://media.teamspeak.com/ts3_literature/
 
 - **Option 1 (Standalone Jar)**: 
 
-   Download the [latest release](https://search.maven.org/remote_content?g=com.github.theholywaffle&a=teamspeak3-api&v=LATEST&c=with-dependencies) and add this jar to the buildpath of your project.
+    Download the [latest release](https://search.maven.org/remote_content?g=com.github.theholywaffle&a=teamspeak3-api&v=LATEST&c=with-dependencies) and add this jar to the buildpath of your project.
 
 - **Option 2 (Maven)**: 
 
-   Add the following to your pom.xml.
+    Add the following to your pom.xml:
 
-```xml
-<dependency>
-	<groupId>com.github.theholywaffle</groupId>
-	<artifactId>teamspeak3-api</artifactId>
-	<version>...</version>
-</dependency>
-```
+    ```xml
+    <dependency>
+	    <groupId>com.github.theholywaffle</groupId>
+	    <artifactId>teamspeak3-api</artifactId>
+	    <version>...</version>
+    </dependency>
+    ```
 
-   This API utilizes [SLF4J](https://www.slf4j.org/) for logging purposes and doesn't come shipped with a default logging implementation, if you use Maven instead of the standalone jar.
-   You will manually have to add one via Maven to get any logging going. The easiest way to do that is to just add SimpleLogger to your project, which also supports configuration via
-   config file you need to ship as a resource, if you want to log ```DEBUG``` messages for instance (raw client-server communication). 
-   See this [configuration example](https://github.com/TheHolyWaffle/TeamSpeak-3-Java-API/blob/master/src/main/resources/simplelogger.properties) for SimpleLogger.
-   Add the following to your pom.xml to get started.
-   
-```xml
-<dependency>
-    <groupId>org.slf4j</groupId>
-    <artifactId>slf4j-simple</artifactId>
-    <version>1.7.25</version>
-</dependency>
-```
+    This API utilizes [SLF4J](https://www.slf4j.org/) for logging purposes and doesn't come shipped with a default logging implementation, if you use Maven instead of the standalone jar.
+    You will manually have to add one via Maven to get any logging going, if you don't have one already. 
+    
+    The easiest way to do so is to just add SimpleLogger to your project, which also supports configuration via
+    config file (needs to be shipped as a resource with your jar), if you want to log ```DEBUG``` messages for instance (e.g. raw client-server communication). 
 
-   You can however choose whichever logging framework suits your needs best. Just add your logging framework and the
-   corresponding [binding](https://mvnrepository.com/artifact/org.slf4j) to your pom.xml.
+    See this [configuration example](https://github.com/TheHolyWaffle/TeamSpeak-3-Java-API/blob/master/src/main/resources/simplelogger.properties) for SimpleLogger.
+    Add the following to your pom.xml to get started:
+
+    ```xml
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>1.7.25</version>
+    </dependency>
+    ```
+
+    You can however choose whichever logging framework suits your needs best. Just add your logging framework and the
+    corresponding [binding](https://mvnrepository.com/artifact/org.slf4j) to your pom.xml.
 
 ### Usage
 
@@ -67,7 +70,6 @@ All functionality is contained in the [TS3Api](src/main/java/com/github/theholyw
 ```java
 final TS3Config config = new TS3Config();
 config.setHost("77.77.77.77");
-config.setEnableCommunicationsLogging(true);
 
 final TS3Query query = new TS3Query(config);
 query.connect();
